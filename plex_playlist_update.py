@@ -47,8 +47,8 @@ IMDB_CHART_URL = config.get('IMDb', 'chart-url')
 IMDB_SEARCH_URL = ''.join([config.get('IMDb', 'search-url'),'&count=',config.get('IMDb', 'search-total')])
 IMDB_PLAYLIST_NAME = config.get('IMDb', 'playlist-name')
 IMDB_SEARCH_NAME = config.get('IMDb', 'search-list-name')
-IMDB_CUSTOM_URL = config.get('IMDb', 'list-url')
-IMDB_CUSTOM_LIST = config.get('IMDb', 'list-name')
+#IMDB_CUSTOM_URL = config.get('IMDb', 'list-url')
+#IMDB_CUSTOM_LIST = config.get('IMDb', 'list-name')
 
 ####### CODE HERE (Nothing to change) ############
 
@@ -302,10 +302,10 @@ def run_movies_lists(plex):
 
     imdb_top_movies_ids = imdb_top_imdb_id_list(IMDB_CHART_URL)
     imdb_search_movies_ids = imdb_search_list(IMDB_SEARCH_URL)
-    imdb_custom_movies_ids = imdb_custom_list(IMDB_CUSTOM_URL)
+    #imdb_custom_movies_ids = imdb_custom_list(IMDB_CUSTOM_URL)
     setup_movie_playlist(plex, imdb_top_movies_ids, all_movies, IMDB_PLAYLIST_NAME)
     setup_movie_playlist(plex, imdb_search_movies_ids, all_movies, IMDB_SEARCH_NAME)
-    setup_movie_playlist(plex, imdb_custom_movies_ids, all_movies, IMDB_CUSTOM_LIST)
+    #setup_movie_playlist(plex, imdb_custom_movies_ids, all_movies, IMDB_CUSTOM_LIST)
 
 def run_show_lists(plex):
     # Get list of shows from the Plex server
@@ -360,7 +360,7 @@ def list_updater():
         list_remover(plex, TRAKT_POPULAR_SHOW_PLAYLIST_NAME)
         list_remover(plex, IMDB_PLAYLIST_NAME)
 	list_remover(plex, IMDB_SEARCH_NAME)
-	list_remover(plex, IMDB_CUSTOM_LIST)
+	#list_remover(plex, IMDB_CUSTOM_LIST)
     else:
         run_movies_lists(plex)
         run_show_lists(plex)

@@ -308,7 +308,7 @@ def trakt_watched_show_imdb_id_list():
         for show in trakt_show:
             tvdb_ids.append(str(show['show']['ids']['tvdb']))
     except:
-        print "Bad Trakt Code"
+        print ("Bad Trakt Code")
         return []
 
     return tvdb_ids

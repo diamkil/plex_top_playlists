@@ -29,7 +29,7 @@ from urllib.request import urlopen
 NA=""
 
 config_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'settings.ini')
-config = ConfigParser.SafeConfigParser()
+config = configparser.SafeConfigParser()
 config.read(config_file_path)
 
 PLEX_URL = os.environ['HOST']

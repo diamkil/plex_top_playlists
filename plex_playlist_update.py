@@ -211,20 +211,20 @@ def print_imdb_info(matching_movie_ids, imdb_ids):
 
 def print_missing_imdb_info(missing_imdb_ids):
     if len(missing_imdb_ids) > 0:
-        print """
+        print ("""
         The IMDB IDs are listed below .. You can
         copy/paste this info and put into radarr ..
-        """
+        """)
         for imdb_id in missing_imdb_ids:
             print "imdb: {0}".format(imdb_id)
-        print "\n\n"
+        print ("\n\n")
 
 def setup_movie_playlist2(plex, imdb_ids, movie_id_dict, playlist_name):
     if imdb_ids:
-        print "{0}: finding matching movies for playlist with count {1}".format(
+        print ("{0}: finding matching movies for playlist with count {1}".format(
             playlist_name,
             len(imdb_ids)
-        )
+        ))
 
         matches = get_matching_movies(imdb_ids, movie_id_dict)
         matching_movies = matches[0]
@@ -232,12 +232,12 @@ def setup_movie_playlist2(plex, imdb_ids, movie_id_dict, playlist_name):
 
         print_imdb_info(matching_movie_ids, imdb_ids)
 
-        print "{}: Created movie list".format(playlist_name)
+        print ("{}: Created movie list".format(playlist_name))
         log_timer()
 
         loop_plex_users(plex, matching_movies, playlist_name)
     else:
-        print "{0}: WARNING - Playlist is empty".format(playlist_name)
+        print ("{0}: WARNING - Playlist is empty".format(playlist_name))
 
 def trakt_watched_imdb_id_list():
     # Get the weekly watched list

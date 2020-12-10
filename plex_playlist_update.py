@@ -248,7 +248,7 @@ def trakt_watched_imdb_id_list():
     'trakt-api-key': TRAKT_API_KEY
     }
 
-    request = Request('https://api.trakt.tv/movies/watched/weekly?page=1&limit={}'.format(TRAKT_NUM_MOVIES), headers=headers)
+    request = requests.Request('https://api.trakt.tv/movies/watched/weekly?page=1&limit={}'.format(TRAKT_NUM_MOVIES), headers=headers)
     try:
         response = urlopen(request)
         trakt_movies = json.load(response)
@@ -274,7 +274,7 @@ def trakt_popular_imdb_id_list():
     }
 
     try:
-        request = Request('https://api.trakt.tv/movies/popular?page=1&limit={}'.format(TRAKT_NUM_MOVIES), headers=headers)
+        request = requests.Request('https://api.trakt.tv/movies/popular?page=1&limit={}'.format(TRAKT_NUM_MOVIES), headers=headers)
         response = urlopen(request)
         trakt_movies = json.load(response)
 
@@ -298,7 +298,7 @@ def trakt_watched_show_imdb_id_list():
     'trakt-api-key': TRAKT_API_KEY
     }
     try:
-        request = Request('https://api.trakt.tv/shows/watched/weekly?page=1&limit={}'.format(TRAKT_NUM_SHOWS), headers=headers)
+        request = requests.Request('https://api.trakt.tv/shows/watched/weekly?page=1&limit={}'.format(TRAKT_NUM_SHOWS), headers=headers)
         response = urlopen(request)
         trakt_show = json.load(response)
 
@@ -323,7 +323,7 @@ def trakt_popular_show_imdb_id_list():
     }
 
     try:
-        request = Request('https://api.trakt.tv/shows/popular?page=1&limit={}'.format(TRAKT_NUM_SHOWS), headers=headers)
+        request = requests.Request('https://api.trakt.tv/shows/popular?page=1&limit={}'.format(TRAKT_NUM_SHOWS), headers=headers)
         response = urlopen(request)
         trakt_show = json.load(response)
 

@@ -259,7 +259,7 @@ def trakt_watched_imdb_id_list():
         for movie in trakt_movies:
             imdb_ids.append(movie['movie']['ids']['imdb'])
     except:
-        print "Bad Trakt Code"
+        print ("Bad Trakt Code")
         return []
 
     return imdb_ids

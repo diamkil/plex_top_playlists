@@ -24,11 +24,9 @@ import configparser
 from lxml.html import parse
 from plexapi.server import PlexServer
 import lxml
-import urllib2
+from urllib.request import urlopen
 #from plexapi.utils import NA
 NA=""
-
-from urllib2 import Request, urlopen
 
 config_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'settings.ini')
 config = ConfigParser.SafeConfigParser()
@@ -339,7 +337,7 @@ def trakt_popular_show_imdb_id_list():
     return tvdb_ids
 
 def imdb_search_list(url):
-    response = urllib2.urlopen(url)
+    response = urlopen(url)
     data = response.read()
     response.close()
     doc = lxml.html.document_fromstring(data)
@@ -347,7 +345,7 @@ def imdb_search_list(url):
     return ids
 
 def imdb_search_list_name(url):
-    response = urllib2.urlopen(url)
+    response = urlopen(url)
     data = response.read()
     response.close()
     doc = lxml.html.document_fromstring(data)
@@ -371,7 +369,7 @@ def imdb_search_lists(plex, movie_id_dict):
         setup_movie_playlist2(plex, ids, movie_id_dict, "IMDB - {0}".format(name))
 
 def imdb_chart_list(url):
-    response = urllib2.urlopen(url)
+    response = urlopen(url)
     data = response.read()
     response.close()
     doc = lxml.html.document_fromstring(data)
@@ -379,7 +377,7 @@ def imdb_chart_list(url):
     return ids
 
 def imdb_chart_list_name(url):
-    response = urllib2.urlopen(url)
+    response = urlopen(url)
     data = response.read()
     response.close()
     doc = lxml.html.document_fromstring(data)
@@ -403,7 +401,7 @@ def imdb_chart_lists(plex, movie_id_dict):
         setup_movie_playlist2(plex, ids, movie_id_dict, "IMDB - {0}".format(name))
 
 def imdb_custom_list(url):
-    response = urllib2.urlopen(url)
+    response = urlopen(url)
     data = response.read()
     response.close()
     doc = lxml.html.document_fromstring(data)
@@ -411,7 +409,7 @@ def imdb_custom_list(url):
     return ids
 
 def imdb_custom_list_name(url):
-    response = urllib2.urlopen(url)
+    response = urlopen(url)
     data = response.read()
     response.close()
     doc = lxml.html.document_fromstring(data)

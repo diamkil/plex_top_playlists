@@ -54,6 +54,7 @@ TRAKT_POPULAR_SHOW_PLAYLIST_NAME = os.environ['POPULAR_TV_NAME']
 # these are the new lists
 IMDB_SEARCH_LISTS = json.loads(config.get('IMDb', 'search-lists'))
 IMDB_CHART_LISTS = json.loads(config.get('IMDb', 'chart-lists'))
+IMDB_CUSTOM_LISTS = json.loads(config.get('IMDb', 'custom-lists'))
 START_TIME = time.time()
 
 ####### CODE HERE (Nothing to change) ############

@@ -38,6 +38,8 @@ MOVIE_LIBRARY_NAME = os.environ['MOVIES']
 SHOW_LIBRARY_NAME = os.environ['TV']
 REMOVE_ONLY = False
 SYNC_WITH_SHARED_USERS = True
+ALLOW_SYNCED_USERS = json.loads(config.get('Plex', 'users'))
+NOT_ALLOW_SYNCED_USERS = json.loads(config.get('Plex', 'not_users'))
 try:
     PLEX_TIMEOUT = 300
 except:

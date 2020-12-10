@@ -34,29 +34,26 @@ config_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'se
 config = ConfigParser.SafeConfigParser()
 config.read(config_file_path)
 
-PLEX_URL = config.get('Plex', 'plex-host')
-PLEX_TOKEN = config.get('Plex', 'plex-token')
-MOVIE_LIBRARY_NAME = config.get('Plex', 'movie-library')
-SHOW_LIBRARY_NAME = config.get('Plex', 'tv-library')
-REMOVE_ONLY = config.getboolean('Plex', 'remove')
-SYNC_WITH_SHARED_USERS = config.getboolean('Plex', 'shared')
-ALLOW_SYNCED_USERS = json.loads(config.get('Plex', 'users'))
-NOT_ALLOW_SYNCED_USERS = json.loads(config.get('Plex', 'not_users'))
+PLEX_URL = os.environ['HOST']
+PLEX_TOKEN = os.environ['TOKEN']
+MOVIE_LIBRARY_NAME = os.environ['MOVIES']
+SHOW_LIBRARY_NAME = os.environ['TV']
+REMOVE_ONLY = False
+SYNC_WITH_SHARED_USERS = True
 try:
-    PLEX_TIMEOUT = int(config.get('Plex', 'timeout'))
+    PLEX_TIMEOUT = 300
 except:
     PLEX_TIMEOUT = 300
-TRAKT_API_KEY = config.get('Trakt', 'api-key')
-TRAKT_NUM_MOVIES = config.get('Trakt', 'movie-total')
-TRAKT_WEEKLY_PLAYLIST_NAME = config.get('Trakt', 'weekly-movie-name')
-TRAKT_POPULAR_PLAYLIST_NAME = config.get('Trakt', 'popular-movie-name')
-TRAKT_NUM_SHOWS = config.get('Trakt', 'tv-total')
-TRAKT_WEEKLY_SHOW_PLAYLIST_NAME = config.get('Trakt', 'weekly-tv-name')
-TRAKT_POPULAR_SHOW_PLAYLIST_NAME = config.get('Trakt', 'popular-tv-name')
+TRAKT_API_KEY = os.environ['TRAKT_API']
+TRAKT_NUM_MOVIES = os.environ['TRAKT_TOTAL_MOVIE']
+TRAKT_WEEKLY_PLAYLIST_NAME = os.environ['WEEKLY_MOVIE_NAME']
+TRAKT_POPULAR_PLAYLIST_NAME = os.environ['POPULAR_MOVIE_NAME']
+TRAKT_NUM_SHOWS = os.environ['TRAKT_TOTAL_TV']
+TRAKT_WEEKLY_SHOW_PLAYLIST_NAME = os.environ['WEEKLY_TV_NAME']
+TRAKT_POPULAR_SHOW_PLAYLIST_NAME = os.environ['POPULAR_TV_NAME']
 # these are the new lists
 IMDB_SEARCH_LISTS = json.loads(config.get('IMDb', 'search-lists'))
 IMDB_CHART_LISTS = json.loads(config.get('IMDb', 'chart-lists'))
-IMDB_CUSTOM_LISTS = json.loads(config.get('IMDb', 'custom-lists'))
 START_TIME = time.time()
 
 ####### CODE HERE (Nothing to change) ############

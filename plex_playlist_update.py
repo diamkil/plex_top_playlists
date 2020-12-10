@@ -333,7 +333,7 @@ def trakt_popular_show_imdb_id_list():
         for show in trakt_show:
             tvdb_ids.append(str(show['ids']['tvdb']))
     except:
-        print "Bad Trakt Code"
+        print ("Bad Trakt Code")
         return []
 
     return tvdb_ids
@@ -394,10 +394,10 @@ def imdb_chart_lists(plex, movie_id_dict):
         except:
             name = imdb_chart_list_name(url)
 
-        print "Creating IMDB chart playlist '{0}' using URL {1}".format(
+        print ("Creating IMDB chart playlist '{0}' using URL {1}".format(
             name,
             url
-        )
+        ))
 
         ids = imdb_chart_list(url)
         setup_movie_playlist2(plex, ids, movie_id_dict, "IMDB - {0}".format(name))
@@ -426,10 +426,10 @@ def imdb_custom_lists(plex, movie_id_dict):
         except:
             name = imdb_custom_list_name(url)
 
-        print "Creating IMDB custom playlist '{0}' using URL {1}".format(
+        print ("Creating IMDB custom playlist '{0}' using URL {1}".format(
             name,
             url
-        )
+        ))
 
         ids = imdb_custom_list(url)
         setup_movie_playlist2(plex, ids, movie_id_dict, "IMDB - {0}".format(name))
@@ -458,11 +458,11 @@ def run_movies_lists(plex):
             print("Exiting script.")
             return [], 0
 
-    print "Found {0} movies total in 'all movies' list from Plex...".format(
+    print ("Found {0} movies total in 'all movies' list from Plex...".format(
         len(all_movies)
-    )
+    ))
 
-    print "Creating movie dictionary based on ID"
+    print ("Creating movie dictionary based on ID")
     movie_id_dict = create_movie_id_dict(all_movies)
 
     print("Retrieving new lists")
@@ -499,9 +499,9 @@ def run_show_lists(plex):
             print("Exiting script.")
             return [], 0
 
-    print "Found {0} show total in 'all shows' list from Plex...".format(
+    print ("Found {0} show total in 'all shows' list from Plex...".format(
         len(all_shows)
-    )
+    ))
 
     print("Retrieving new lists")
     if TRAKT_API_KEY:
@@ -512,7 +512,7 @@ def run_show_lists(plex):
         # setup_show_playlist2(plex, trakt_weekly_show_imdb_ids, show_id_dict, TRAKT_WEEKLY_SHOW_PLAYLIST_NAME)
         # setup_show_playlist2(plex, trakt_popular_show_imdb_ids, show_id_dict, TRAKT_POPULAR_SHOW_PLAYLIST_NAME)
     else:
-        print "No Trakt API key, skipping lists"
+        print ("No Trakt API key, skipping lists")
 
 def list_remover(plex, playlist_name):
     #update my list
@@ -524,18 +524,18 @@ def list_remover(plex, playlist_name):
         plex_users = get_user_tokens(plex.machineIdentifier)
         for user in plex_users:
             if (not ALLOW_SYNCED_USERS or user in ALLOW_SYNCED_USERS):
-                print "{0}: removing playlist for user {1}".format(
+                print ("{0}: removing playlist for user {1}".format(
                     playlist_name,
                     user
-                )
+                ))
                 user_token = plex_users[user]
                 user_plex = PlexServer(baseurl=PLEX_URL, token=user_token, timeout=PLEX_TIMEOUT)
                 remove_playlist(user_plex, playlist_name)
             else:
-                print "{0}: NOT removing playlist for user {1}".format(
+                print ("{0}: NOT removing playlist for user {1}".format(
                     playlist_name,
                     user
-                )
+                ))
     else:
         print("Skipping removal from shared users")
 
@@ -553,9 +553,9 @@ def remove_lists(plex):
             name = showlist.split(",")[1]
         except:
             name = imdb_custom_list_name(url)
-        print "Removing IMDB custom playlist '{0}'".format(
+        print ("Removing IMDB custom playlist '{0}'".format(
             name
-        )
+        ))
         imdb_playlist_remover(plex, name)
 
     for showlist in IMDB_CHART_LISTS:
@@ -564,9 +564,9 @@ def remove_lists(plex):
             name = showlist.split(",")[1]
         except:
             name = imdb_chart_list_name(url)
-        print "Removing IMDB chart playlist '{0}'".format(
+        print ("Removing IMDB chart playlist '{0}'".format(
             name
-        )
+        ))
         imdb_playlist_remover(plex, name)
 
     for showlist in IMDB_SEARCH_LISTS:
@@ -575,9 +575,9 @@ def remove_lists(plex):
             name = showlist.split("||")[1]
         except:
             name = imdb_search_list_name(url)
-        print "Removing IMDB search playlist '{0}'".format(
+        print ("Removing IMDB search playlist '{0}'".format(
             name
-        )
+        ))
         imdb_playlist_remover(plex, name)
 
 def list_updater():

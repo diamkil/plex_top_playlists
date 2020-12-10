@@ -85,14 +85,6 @@ def create_playlists(plex, runlist, playlist_name):
     try:
         remove_playlist(plex, playlist_name)
         plex.createPlaylist(playlist_name, runlist)
-    except:
-        print """
-        ERROR trying to create playlist '{0}'
-        The number of movies/shows in the list provided was {1}
-        """.format(
-            playlist_name,
-            len(runlist)
-        )
 
 def loop_plex_users(plex, list, playlist_name):
     #update my list

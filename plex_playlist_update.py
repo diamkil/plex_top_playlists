@@ -182,27 +182,7 @@ def get_matching_movies(imdb_ids, movie_id_dict):
 
 def print_imdb_info(matching_movie_ids, imdb_ids):
     missing_imdb_ids = list(set(imdb_ids) - set(matching_movie_ids))
-    print """
-    I found {match_ids_len} of your movie IDs that matched
-    the IMDB IDs top {imdb_ids_len} list ..
-    That means you are missing {miss_ids_len} of
-    the IMDB IDs top {imdb_ids_len} list
-    """.format(
-        match_ids_len=len(matching_movie_ids),
-        imdb_ids_len=len(imdb_ids),
-        miss_ids_len=len(missing_imdb_ids)
-    )
     print_missing_imdb_info(missing_imdb_ids)
-
-def print_missing_imdb_info(missing_imdb_ids):
-    if len(missing_imdb_ids) > 0:
-        print """
-        The IMDB IDs are listed below .. You can
-        copy/paste this info and put into radarr ..
-        """
-        for imdb_id in missing_imdb_ids:
-            print "imdb: {0}".format(imdb_id)
-        print "\n\n"
 
 def setup_movie_playlist2(plex, imdb_ids, movie_id_dict, playlist_name):
     if imdb_ids:

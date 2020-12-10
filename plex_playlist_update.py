@@ -216,7 +216,7 @@ def print_missing_imdb_info(missing_imdb_ids):
         copy/paste this info and put into radarr ..
         """)
         for imdb_id in missing_imdb_ids:
-            print "imdb: {0}".format(imdb_id)
+            print ("imdb: {0}".format(imdb_id))
         print ("\n\n")
 
 def setup_movie_playlist2(plex, imdb_ids, movie_id_dict, playlist_name):

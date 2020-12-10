@@ -76,9 +76,7 @@ def remove_playlist(plex, playlist_name):
         if playlist.title == playlist_name:
             try:
                 playlist.delete()
-                #print("{}: Playlist deleted".format(playlist_name))
             except:
-                print("ERROR - cannot delete playlist: {}".format(playlist_name))
                 return None
 
 def create_playlists(plex, runlist, playlist_name):
@@ -94,7 +92,6 @@ def loop_plex_users(plex, list, playlist_name):
         plex_users = get_user_tokens(plex.machineIdentifier)
         for user in plex_users:
             if (not ALLOW_SYNCED_USERS or user in ALLOW_SYNCED_USERS) and user not in NOT_ALLOW_SYNCED_USERS:
-                print("{}: updating playlist for user {}".format(playlist_name, user))
                 user_token = plex_users[user]
                 user_plex = PlexServer(baseurl=PLEX_URL, token=user_token, timeout=PLEX_TIMEOUT)
                 create_playlists(user_plex, list, playlist_name)
@@ -111,7 +108,6 @@ def get_tvdb_id(show):
 def setup_show_playlist(plex, tvdb_ids, plex_shows, playlist_name):
     if tvdb_ids:
         # Create a list of matching shows using last episode
-        print("{}: finding matching episodes for playlist with count {}".format(playlist_name, len(tvdb_ids)))
         matching_episodes = []
         matching_episode_ids = []
         sorted_shows = []
@@ -127,10 +123,7 @@ def setup_show_playlist(plex, tvdb_ids, plex_shows, playlist_name):
         print("That means you are missing {missing_len} of the TVDB IDs top {tvdb_len} list".format(missing_len=len(missing_episode_ids), tvdb_len=len(tvdb_ids)))
         if len(missing_episode_ids) > 0:
             print("The TVDB IDs are listed below .. You can copy/paste this info and put into sonarr ..")
-            for tvdb_id in missing_episode_ids:
-                print("tvdb: {}".format(tvdb_id))
 
-        print("{}: Sorting list in correct order".format(playlist_name))
 
         for tvdb_id in tvdb_ids:
             for episode in matching_episodes:
@@ -139,11 +132,7 @@ def setup_show_playlist(plex, tvdb_ids, plex_shows, playlist_name):
                     sorted_shows.append(episode)
                     break;
 
-        print("{}: Created shows list".format(playlist_name))
-
         loop_plex_users(plex, sorted_shows, playlist_name)
-    else:
-        print('{}: WARNING - Playlist is empty'.format(playlist_name))
 
 def get_imdb_id(movie):
     try:
@@ -186,10 +175,6 @@ def print_imdb_info(matching_movie_ids, imdb_ids):
 
 def setup_movie_playlist2(plex, imdb_ids, movie_id_dict, playlist_name):
     if imdb_ids:
-        print "{0}: finding matching movies for playlist with count {1}".format(
-            playlist_name,
-            len(imdb_ids)
-        )
 
         matches = get_matching_movies(imdb_ids, movie_id_dict)
         matching_movies = matches[0]
@@ -197,12 +182,9 @@ def setup_movie_playlist2(plex, imdb_ids, movie_id_dict, playlist_name):
 
         print_imdb_info(matching_movie_ids, imdb_ids)
 
-        print "{}: Created movie list".format(playlist_name)
         log_timer()
 
         loop_plex_users(plex, matching_movies, playlist_name)
-    else:
-        print "{0}: WARNING - Playlist is empty".format(playlist_name)
 
 def trakt_watched_imdb_id_list():
     # Get the weekly watched list
@@ -464,9 +446,6 @@ def run_show_lists(plex):
             print("Exiting script.")
             return [], 0
 
-    print "Found {0} show total in 'all shows' list from Plex...".format(
-        len(all_shows)
-    )
 
     print("Retrieving new lists")
     if TRAKT_API_KEY:
@@ -481,7 +460,6 @@ def run_show_lists(plex):
 
 def list_remover(plex, playlist_name):
     #update my list
-    print("{}: removing playlist for script user".format(playlist_name))
     remove_playlist(plex, playlist_name)
 
     #update list for shared users
@@ -518,9 +496,6 @@ def remove_lists(plex):
             name = showlist.split(",")[1]
         except:
             name = imdb_custom_list_name(url)
-        print "Removing IMDB custom playlist '{0}'".format(
-            name
-        )
         imdb_playlist_remover(plex, name)
 
     for showlist in IMDB_CHART_LISTS:

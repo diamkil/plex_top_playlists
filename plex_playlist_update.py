@@ -82,9 +82,8 @@ def remove_playlist(plex, playlist_name):
                 return None
 
 def create_playlists(plex, runlist, playlist_name):
-    try:
-        remove_playlist(plex, playlist_name)
-        plex.createPlaylist(playlist_name, runlist)
+    remove_playlist(plex, playlist_name)
+    plex.createPlaylist(playlist_name, runlist)
 
 def loop_plex_users(plex, list, playlist_name):
     #update my list

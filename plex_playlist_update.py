@@ -20,7 +20,7 @@ import requests
 import subprocess
 import time
 import xmltodict
-import ConfigParser
+import configparser
 from lxml.html import parse
 from plexapi.server import PlexServer
 import lxml

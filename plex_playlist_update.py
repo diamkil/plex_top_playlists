@@ -59,10 +59,10 @@ START_TIME = time.time()
 ####### CODE HERE (Nothing to change) ############
 
 def log_timer(marker = ""):
-    print ">>> {0} seconds {1}".format(
+    print (">>> {0} seconds {1}".format(
         time.time() - START_TIME,
         marker
-    )
+    ))
 
 def get_user_tokens(server_id):
     headers = {'Accept': 'application/json', 'X-Plex-Token': PLEX_TOKEN}

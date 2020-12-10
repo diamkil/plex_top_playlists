@@ -197,7 +197,7 @@ def get_matching_movies(imdb_ids, movie_id_dict):
 
 def print_imdb_info(matching_movie_ids, imdb_ids):
     missing_imdb_ids = list(set(imdb_ids) - set(matching_movie_ids))
-    print """
+    print ("""
     I found {match_ids_len} of your movie IDs that matched
     the IMDB IDs top {imdb_ids_len} list ..
     That means you are missing {miss_ids_len} of
@@ -206,7 +206,7 @@ def print_imdb_info(matching_movie_ids, imdb_ids):
         match_ids_len=len(matching_movie_ids),
         imdb_ids_len=len(imdb_ids),
         miss_ids_len=len(missing_imdb_ids)
-    )
+    ))
     print_missing_imdb_info(missing_imdb_ids)
 
 def print_missing_imdb_info(missing_imdb_ids):

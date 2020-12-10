@@ -362,10 +362,10 @@ def imdb_search_lists(plex, movie_id_dict):
         except:
             name = imdb_search_list_name(url)
 
-        print "Creating IMDB search playlist '{0}' using URL {1}".format(
+        print ("Creating IMDB search playlist '{0}' using URL {1}".format(
             name,
             url
-        )
+        ))
 
         ids = imdb_search_list(url)
         setup_movie_playlist2(plex, ids, movie_id_dict, "IMDB - {0}".format(name))
